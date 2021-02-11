@@ -1,0 +1,155 @@
+//initial setup
+
+npm init
+npm install express
+npm install mongoose
+npm install nodemon concurrently -D
+
+const express = require('express')
+const app = express()
+app.listen(port, ()=>{console.log('callback')})
+
+npm install config
+
+create config folder with default.json and production.json
+config.default.json
+  port : port
+  mongoUri: mongoUri
+
+index.js 
+  const config = require('config')
+  const PORT = config.get("port") || 5000;
+  const mongoose = require('mongoose')
+  async function start {
+    try {
+      await mongoose.connect(config.get(mongoUri), {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      })
+    } catch(e){
+      console.log(e.message)
+    }
+  }
+
+//Authorization module
+index.js
+  app.use('/api/auth')
+create folder routes in root
+file auth.routes.js in routes
+auth.routes.js
+  const {Router} = require('express);
+  const router = Router();
+  module.exports = router
+index.js
+  app.use('./api/auth', require('./routes/auth.routes.js'))
+auth.routes.js
+  // /api/auth
+  // /api/auth/register
+  router.post('/register', async (req, res)=> {
+  })
+  // /api/auth/login
+  router.post('/login', async (req, res)=> {
+  })
+...auth.routes.js
+
+//mongoDB models
+create folder models in root
+User.js in models
+User.js
+  const {Schema, model} = require('mongoose);
+  const schema = new Schema({
+
+  })
+  module.exports = model('User', schema)
+  ...User.js
+auth.routes.js
+  const User = require('../models/User')
+  const candidate = await User.findOne({email: email})
+  ...auth.routes.js
+
+//bcryptjs usage
+npm i bcryptjs
+auth.routes.js
+  const bcrypt = require('bcryptjs')
+  const hashedPassword = await bcrypt.hash(password, 12)
+  const user = new User({email: email, password: hashedPassword})
+  // saving to mongoose
+  await user.save()
+  res.json(201).json({'user created'})
+
+//express-validator usage
+npm i express-validator
+auth.routes.js
+  const {check, validationResult} = require('express-validator')
+  add to router.post method additional midlewar
+    router.post(
+      '/register',
+      [
+        check('email', 'very bad email').isEmail(),
+        check('password', 'password should be 5 length').isLenght({5})
+      ],
+      async (req, res) => {
+        try {
+          const errors = validationResult(req)
+          if(!errors.isEmpty()) {
+            return res.status(400).json({
+              errors: errors.array(),
+              message: 'bad registration data'
+            })
+          }
+        }
+      }
+    )
+
+//jsonwebtoken Authorization usage
+npm i jsonwebtoken
+config.default.js
+  "jwtSalt": "some salt",
+auth.routes.js
+  const config = require('config')
+  const jwt = require('jsonwebtoken')
+  -- in login try{
+    const token = jwt.sign(
+      {userID: user.id},
+       config.get('jwtSalt'),
+       {expiresIn: '1h'}
+    )
+  }
+
+//Swagger
+npm install swagger-jsdoc
+npm install swagger-ui-express
+create swaggerDoc.js in root
+...swaggerDoc.js
+index.js
+  const swaggerDoc = require("./swaggerDoc");
+  modify 
+    app.use("/api/auth", express.json(), require("./routes/auth.routes"));
+  swaggerDoc(app);
+  add swagger comments into routes
+
+//create React client
+npx create-react-app client
+package.json  
+    "client": "npm run start --prefix client",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+
+//react-router-dom
+cd client
+npm install react-router-dom
+index.js
+  import { BrowserRouter as Router } from "react-router-dom";
+    <Router>
+      <App />
+    </Router>
+create routes.js
+
+client package.json add
+  "proxy":"http://localhost:5000", 
+
+http.hooks.js  
+        if (body) {
+          body = JSON.stringify(body);
+          headers["Content-Type"] = "application/json";
+        }

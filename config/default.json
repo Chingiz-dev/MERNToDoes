@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "mongoUri": "mongodb+srv://chingiz:chingiz123456@cluster0.4ruxa.mongodb.net/ToDo?retryWrites=true&w=majority",
+  "jwtSalt": "hello buddy"
+}

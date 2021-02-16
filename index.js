@@ -9,8 +9,9 @@ const PORT = config.get("port") || 5000;
 
 swaggerDoc(app);
 
-app.use("/api/auth", express.json({extended: true}), require("./routes/auth.routes"));
-
+app.use(express.json({ extended: true }));
+app.use("/api/auth", require("./routes/auth.routes"));
+app.use("/api/todo", require("./routes/todo.routes"));
 
 async function start() {
   try {

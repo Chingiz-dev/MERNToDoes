@@ -9,7 +9,7 @@ const schema = new Schema({
     type: String,
     requred: true,
   },
-  todos: [{ type: Types.ObjectId, ref: "Todos" }]
+  todos: [{ type: Types.ObjectId, ref: "Todo" }]
 });
 
 module.exports = model("User", schema);

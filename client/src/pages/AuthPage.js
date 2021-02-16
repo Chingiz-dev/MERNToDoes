@@ -3,7 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 
 export const AuthPage = () => {
-  const auth = useContext(AuthContext)
+  const auth = useContext(AuthContext);
   const { loading, error, request, clearError } = useHttp();
   const [form, setForm] = useState({
     email: "",
@@ -28,12 +28,10 @@ export const AuthPage = () => {
     event.preventDefault();
     try {
       const data = await request("api/auth/login", "POST", { ...form });
-      auth.login(data.token, data.userID)
-    } catch (error) {}
-    setForm({
-      email: "",
-      password: "",
-    });
+      auth.login(data.token, data.userID);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleRegister = async (evt) => {

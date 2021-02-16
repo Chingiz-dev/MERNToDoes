@@ -1,8 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
+import { useHistory } from "react-router-dom";
 
 export const AddTodoPage = () => {
+  const history = useHistory();
   const auth = useContext(AuthContext);
   const [todoBody, setTodoBody] = useState("hello");
   const [todoTitle, setTodoTitle] = useState(" world");
@@ -23,9 +25,10 @@ export const AddTodoPage = () => {
       const todoType = important + urgent;
       const form = { todoBody, todoTitle, todoType };
       const data = await request("/api/todo/addTodo", "POST", form, {
-        authorization: `Bearer ${auth.token}`,
+        Authorization: `Bearer ${auth.token}`,
       });
       console.log(data);
+      history.push("/todos");
     } catch (error) {
       console.log(error);
     }

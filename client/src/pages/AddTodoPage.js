@@ -27,7 +27,7 @@ export const AddTodoPage = () => {
       const data = await request("/api/todo/addTodo", "POST", form, {
         Authorization: `Bearer ${auth.token}`,
       });
-      console.log(data);
+      console.log(data, ' - is created');
       history.push("/todos");
     } catch (error) {
       console.log(error);

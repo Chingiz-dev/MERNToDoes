@@ -65,7 +65,7 @@ router.post("/addTodo", auth, async (req, res) => {
 
 router.get("/", auth, async (req, res) => {
   try {
-    const todos = await Todo.find({ owner: req.user.userId });
+    const todos = await Todo.find({ owner: req.user.userID });
     res.json(todos);
   } catch (error) {
     res.status(500).json(error.message); // refactor after

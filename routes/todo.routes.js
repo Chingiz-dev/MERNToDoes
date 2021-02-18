@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const Todo = require("../models/Todo");
-const auth = require("../middleware/auth.middleware");
+const Todo = require("../models/Todo.js");
+const auth = require("../middleware/auth.middleware.js");
 const config = require("config");
 
 const router = Router();
@@ -49,16 +49,17 @@ router.post("/addTodo", auth, async (req, res) => {
   try {
     const baseURL = config.get("baseURL");
     const { todoTitle, todoBody, todoType } = req.body;
+    console.log(req.user);
     const todo = new Todo({
-      owner: req.user.userId,
+      owner: req.user.userID,
       todoTitle,
       todoBody,
       todoType,
     });
     await todo.save();
-    res.status(201).json({ todo });
+    res.status(201).json( todo );
   } catch (e) {
-    res.status(500).json(e.message); // refactor after
+    res.status(409).json({message: e.message}); // refactor after
   }
 });
 

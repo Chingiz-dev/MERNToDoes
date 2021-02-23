@@ -1,0 +1,9 @@
+.nav {
+  background-color: pink;
+}
+
+@media (min-width: 800px) {
+  .ul li {
+    display: inline;
+  }
+}

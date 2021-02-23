@@ -3,6 +3,7 @@ import { GroupTodo } from "../components/GroupTodo";
 import { useHttp } from "../hooks/http.hook";
 import { Loader } from "../components/Loader";
 import { AuthContext } from "../context/AuthContext";
+import st from "./TodosPage.module.css";
 
 export const TodosPage = () => {
   const { request, loading } = useHttp();
@@ -35,24 +36,28 @@ export const TodosPage = () => {
   }
 
   return (
-    <div>
-      <h2>Todos page</h2>
-      <GroupTodo groupName="Important and Urgent" todoArray={IU} key="IU" />
-      <GroupTodo
-        groupName="Not Important but Urgent"
-        todoArray={notIU}
-        key="notIU"
-      />
-      <GroupTodo
-        groupName="Important but not Urgent"
-        todoArray={InotU}
-        ket="InotU"
-      />
-      <GroupTodo
-        groupName="Not Important and not Urgent"
-        todoArray={notInotU}
-        key="notInotU"
-      />
+    <div className="main_width">
+      <div className={st.header}>
+        <h1 className={st.h2}>Todos</h1>
+      </div>
+      <div className={st.container}>
+        <GroupTodo groupName="Important and Urgent" todoArray={IU} key="IU" />
+        <GroupTodo
+          groupName="Not Important but Urgent"
+          todoArray={notIU}
+          key="notIU"
+        />
+        <GroupTodo
+          groupName="Important but not Urgent"
+          todoArray={InotU}
+          ket="InotU"
+        />
+        <GroupTodo
+          groupName="Not Important and not Urgent"
+          todoArray={notInotU}
+          key="notInotU"
+        />
+      </div>
     </div>
   );
 };

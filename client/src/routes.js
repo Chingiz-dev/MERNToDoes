@@ -14,8 +14,8 @@ export const useRoutes = (isAuthenticated) => {
         <Route path="/way" exact>
           <WayPage />
         </Route>
-        <Route>
-          <AddTodoPage path='/addtodo' exact />
+        <Route path='/addtodo' exact >
+          <AddTodoPage/>
         </Route>
         <Redirect to="/todos" />
       </Switch>

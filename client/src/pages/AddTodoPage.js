@@ -6,8 +6,8 @@ import { useHistory } from "react-router-dom";
 export const AddTodoPage = () => {
   const history = useHistory();
   const auth = useContext(AuthContext);
-  const [todoBody, setTodoBody] = useState("hello");
-  const [todoTitle, setTodoTitle] = useState(" world");
+  const [todoBody, setTodoBody] = useState("");
+  const [todoTitle, setTodoTitle] = useState("");
   const [important, setImportant] = useState("I");
   const [urgent, setUrgent] = useState("U");
   const { error, request, clearError } = useHttp();
@@ -44,6 +44,7 @@ export const AddTodoPage = () => {
             id="todoTitle"
             value={todoTitle}
             onChange={(e) => setTodoTitle(e.target.value)}
+            autoComplete='off'
           />
         </div>
         <div>

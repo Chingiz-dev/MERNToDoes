@@ -1,0 +1,22 @@
+.group {
+  border: royalblue solid 1px;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: silver;
+  min-height: 30rem;
+  margin: 5px 0;
+  width: 23%;
+}
+
+@media (max-width: 900px) {
+  .group {
+    min-width: 40%;
+    min-height: 20rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .group {
+    width: 70%;
+  }
+}

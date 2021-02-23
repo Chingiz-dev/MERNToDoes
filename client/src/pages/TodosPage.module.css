@@ -1,0 +1,15 @@
+.header {
+  text-align: center;
+}
+
+.h2 {
+  color: rgb(66, 54, 31);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  background-color: sandybrown;
+}

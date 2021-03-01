@@ -3,6 +3,7 @@ import { TodosPage } from "./pages/TodosPage";
 import { WayPage } from "./pages/WayPage";
 import { AddTodoPage } from "./pages/AddTodoPage";
 import { AuthPage } from "./pages/AuthPage";
+import { MyContacts } from "./pages/MyContacts";
 
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
@@ -10,6 +11,9 @@ export const useRoutes = (isAuthenticated) => {
       <Switch>
         <Route path="/todos" exact>
           <TodosPage />
+        </Route>
+        <Route path="/contacts" exact>
+          <MyContacts />
         </Route>
         <Route path="/way" exact>
           <WayPage />

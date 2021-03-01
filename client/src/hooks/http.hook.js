@@ -27,6 +27,7 @@ export const useHttp = () => {
           console.log(data);
         }
         if (!response.ok) {
+          console.log(data);
           throw new Error(data.message || "Somethink went wrong");
         }
         setLoading(false);

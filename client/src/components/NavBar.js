@@ -20,6 +20,9 @@ export const NavBar = () => {
             <NavLink to="/way">My way</NavLink>
           </li>
           <li>
+            <NavLink to="/contacts">My contacts</NavLink>
+          </li>
+          <li>
             <NavLink to="/todos">My todos</NavLink>
           </li>
           <li>

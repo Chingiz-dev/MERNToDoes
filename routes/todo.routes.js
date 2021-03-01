@@ -57,9 +57,9 @@ router.post("/addTodo", auth, async (req, res) => {
       todoType,
     });
     await todo.save();
-    res.status(201).json( todo );
+    res.status(201).json(todo);
   } catch (e) {
-    res.status(409).json({message: e.message}); // refactor after
+    res.status(409).json({ message: e.message }); // refactor after
   }
 });
 
@@ -67,6 +67,16 @@ router.get("/", auth, async (req, res) => {
   try {
     const todos = await Todo.find({ owner: req.user.userID });
     res.json(todos);
+  } catch (error) {
+    res.status(500).json(error.message); // refactor after
+  }
+});
+
+router.delete("/deleteTodo", auth, async (req, res) => {
+  try {
+    console.log("request id - ", req.body.todoID);
+    const dbReply = await Todo.deleteOne({ _id: req.body.todoID });
+    res.json("must be deleted");
   } catch (error) {
     res.status(500).json(error.message); // refactor after
   }

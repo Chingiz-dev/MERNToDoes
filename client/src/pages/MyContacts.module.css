@@ -1,0 +1,17 @@
+@media (min-width: 800px) {
+  .ul li {
+    display: inline;
+  }
+}
+
+.ul li {
+  padding: 10px;
+}
+
+.ul li a {
+  text-decoration: underline overline;
+}
+
+.ul {
+  list-style-type: none;
+}

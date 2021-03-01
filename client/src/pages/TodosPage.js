@@ -17,6 +17,7 @@ export const TodosPage = () => {
     const totalData = await request("/api/todo/", "GET", null, {
       Authorization: `Bearer ${token.token}`,
     });
+    console.log(totalData)
     const IU = totalData.filter((data) => data.todoType === "IU");
     setIU(IU);
     const InotU = totalData.filter((data) => data.todoType === "InotU");

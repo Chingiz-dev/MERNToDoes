@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "mongoUri": "mongodb+srv://chingiz:chingiz654321@cluster0.4ruxa.mongodb.net/ToDo?retryWrites=true&w=majority",
+  "jwtSalt": "hello buddy",
+  "baseURL": "http://localhost:5000"
+}

@@ -153,3 +153,6 @@ http.hooks.js
           body = JSON.stringify(body);
           headers["Content-Type"] = "application/json";
         }
+
+
+npm install --save-dev cross-env
